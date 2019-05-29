@@ -1,0 +1,3 @@
+rootProject.name = 'sailfish-oauth2'
+include 'oauth2'
+include 'test'

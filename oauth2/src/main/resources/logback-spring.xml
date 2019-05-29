@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    ​
+    <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logging.file}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${logging.file}.%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+            <maxFileSize>${LOG_MAX_FILE_SIZE}MB</maxFileSize>
+            <totalSizeCap>${LOG_TOTAL_SIZE_CAP}MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+    ​
+    <root>
+        <appender-ref ref="logfile"/>
+    </root>
+</configuration>

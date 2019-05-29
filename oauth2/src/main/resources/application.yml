@@ -1,0 +1,20 @@
+server:
+  port: 80
+
+#management:
+#  port: 9001
+
+info:
+  app:
+    name: ${spring.application.name}
+    version: ${OAUTH2_VERSION:unknown}
+
+security:
+  basic:
+    enabled: false
+
+spring:
+  profiles:
+    active: production
+
+
