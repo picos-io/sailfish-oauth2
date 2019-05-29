@@ -5,8 +5,7 @@ spring:
 logging:
   file: ${LOG_FILE:oauth2.log}
   level:
-    root: ${LOG_LEVEL:INFO}
+    root: ${LOG_LEVEL_ROOT:INFO}
     io.picos: ${LOG_LEVEL_APP:DEBUG}
-    org.springframework.security: ${LOG_LEVEL_SECURITY:INFO}
-  maxFileSize: ${LOG_MAX_FILE_SIZE:10}
-  totalSizeCap: ${LOG_TOTAL_SIZE_CAP:100}
+    com.springframework.security: ${LOG_LEVEL_SECURITY:INFO}
+    com.springframework.security.oauth2: ${LOG_LEVEL_SECURITY:DEBUG}

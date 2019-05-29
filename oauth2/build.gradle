@@ -1,11 +1,6 @@
 apply plugin: 'org.springframework.boot'
 
-springBoot {
-    excludeDevtools = false
-}
-
 dependencies {
-    compile "org.springframework.boot:spring-boot-devtools"
     compile "org.springframework.boot:spring-boot-starter"
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-actuator"
@@ -14,8 +9,6 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-data-redis"
 
     compile "org.springframework.security.oauth:spring-security-oauth2:$SPRING_OAUTH2_VERSION"
-
-    testCompile ("org.springframework.boot:spring-boot-starter-test")
 }
 
 bootRun {

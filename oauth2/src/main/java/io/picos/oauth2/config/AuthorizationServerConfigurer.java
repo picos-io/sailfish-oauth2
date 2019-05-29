@@ -4,8 +4,11 @@ import io.picos.oauth2.support.oauth2.MongodbClientDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -17,6 +20,7 @@ import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.approval.TokenApprovalStore;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
@@ -31,7 +35,7 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
     private RedisConnectionFactory redisConnectionFactory;
 
     @Autowired
-    private AbstractUserDetailsAuthenticationProvider userDetailsAuthenticationProvider;
+    private AuthenticationProvider userDetailsAuthenticationProvider;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -56,7 +60,17 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
     }
 
     @Bean
-    ClientDetailsService clientDetailsService() {
+    @Primary
+    public DefaultTokenServices tokenServices() {
+        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+        defaultTokenServices.setTokenStore(tokenStore());
+        defaultTokenServices.setClientDetailsService(clientDetailsService());
+        defaultTokenServices.setSupportRefreshToken(true);
+        return defaultTokenServices;
+    }
+
+    @Bean
+    public ClientDetailsService clientDetailsService() {
         return new MongodbClientDetailsService();
     }
 
