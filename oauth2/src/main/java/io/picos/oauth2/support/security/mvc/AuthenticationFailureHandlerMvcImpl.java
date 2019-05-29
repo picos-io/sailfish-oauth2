@@ -1,11 +1,7 @@
 package io.picos.oauth2.support.security.mvc;
 
-import in.clouthink.daas.sbb.audit.domain.model.AuthEvent;
-import in.clouthink.daas.sbb.audit.service.AuthEventService;
-import in.clouthink.daas.sbb.security.impl.auth.AuthEventHelper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
@@ -21,9 +17,6 @@ public class AuthenticationFailureHandlerMvcImpl extends SimpleUrlAuthentication
 
 	private static final Log logger = LogFactory.getLog(AuthenticationFailureHandlerMvcImpl.class);
 
-	@Autowired
-	private AuthEventService userAuditService;
-
 	public AuthenticationFailureHandlerMvcImpl() {
 	}
 
@@ -36,8 +29,6 @@ public class AuthenticationFailureHandlerMvcImpl extends SimpleUrlAuthentication
 										HttpServletResponse response,
 										AuthenticationException exception) throws IOException, ServletException {
 		logger.error(exception, exception);
-		AuthEvent userLogin = AuthEventHelper.buildFailedAuthEvent(request, exception);
-		userAuditService.saveUserAuthEvent(userLogin);
 		String accept = request.getHeader("Accept");
 		if (accept != null && accept.contains("application/json")) {
 			logger.warn("The ajax request is not authenticated.");
