@@ -16,6 +16,8 @@
 
 package io.picos.oauth2.support.oauth2;
 
+import io.picos.oauth2.repository.OAuth2ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
@@ -25,24 +27,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Basic, in-memory implementation of the client details service.
+ * Mongodb implementation of the client details service.
  *
- * @author Ryan Heaton
+ * @author dz
  */
 public class MongodbClientDetailsService implements ClientDetailsService {
 
-  private Map<String, ClientDetails> clientDetailsStore = new HashMap<String, ClientDetails>();
+    @Autowired
+    private OAuth2ClientRepository oAuth2ClientRepository;
 
-  public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
-    ClientDetails details = clientDetailsStore.get(clientId);
-    if (details == null) {
-      throw new NoSuchClientException("No client with requested id: " + clientId);
+    public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
+        ClientDetails details = oAuth2ClientRepository.findByClientId(clientId);
+        if (details == null) {
+            throw new NoSuchClientException("No client with requested id: " + clientId);
+        }
+        return details;
     }
-    return details;
-  }
-
-  public void setClientDetailsStore(Map<String, ? extends ClientDetails> clientDetailsStore) {
-    this.clientDetailsStore = new HashMap<String, ClientDetails>(clientDetailsStore);
-  }
 
 }

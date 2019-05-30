@@ -25,6 +25,8 @@
             "clientId" : "oauth2-demo-client",
             "clientSecret": "$2a$10$IOngSQjUJgLZD25rBMIjUuA00s.9m3h1u/LewPBDoEM27G5yNwP7m",
             "authorizedGrantTypes": "authorization_code,implicit,refresh_token,password",
+            "scope":["*"],
+            "authorities":[]
             });
         </script>
     </changeSet>

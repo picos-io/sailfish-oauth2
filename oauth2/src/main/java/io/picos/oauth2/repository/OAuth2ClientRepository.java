@@ -10,4 +10,6 @@ public interface OAuth2ClientRepository extends PagingAndSortingRepository<OAuth
 
     OAuth2Client findById(String id);
 
+    OAuth2Client findByClientId(String clientId);
+
 }
