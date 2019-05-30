@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "IamUsers")
+@Document(collection = "users")
 public class User extends StringIdentifier implements UserDetails {
 
 	public static final String ADMINISTRATOR = "administrator";

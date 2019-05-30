@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * @see org.springframework.security.oauth2.provider.client.BaseClientDetails
  */
-@Document(collection = "OAuth2Clients")
+@Document(collection = "oauth2Clients")
 @org.codehaus.jackson.map.annotate.JsonSerialize(include = org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion.NON_DEFAULT)
 @org.codehaus.jackson.annotate.JsonIgnoreProperties(ignoreUnknown = true)
 @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT)

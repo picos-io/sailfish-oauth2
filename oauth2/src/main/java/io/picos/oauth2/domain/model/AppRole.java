@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * 应用扩展角色,是系统内置角色（Role）的补充
  */
-@Document(collection = "IamRoles")
+@Document(collection = "roles")
 public class AppRole extends StringIdentifier implements GrantedAuthority {
 
 	//扩展角色不能使用以下编码（内置角色已经占用）

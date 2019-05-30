@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document(collection = "IamUserRoleRelationships")
+@Document(collection = "userRoles")
 public class UserRoleRelationship extends StringIdentifier {
 
 	@Indexed
