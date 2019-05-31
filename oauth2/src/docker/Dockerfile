@@ -15,7 +15,7 @@ FROM clouthinkin/jre
 
 LABEL maintainer="melthaw@gmail.com"
 
-COPY src/docker/docker-entrypoint.sh /
+COPY oauth2/src/docker/docker-entrypoint.sh /
 
 COPY --from=builder /code/build/oauth2/libs/oauth2-1.0.0-SNAPSHOT.jar /oauth2-1.0.0-SNAPSHOT.jar
 
