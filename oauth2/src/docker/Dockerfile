@@ -17,7 +17,7 @@ LABEL maintainer="melthaw@gmail.com"
 
 COPY oauth2/src/docker/docker-entrypoint.sh /
 
-COPY --from=builder /code/build/oauth2/libs/oauth2-1.0.0-SNAPSHOT.jar /oauth2-1.0.0-SNAPSHOT.jar
+COPY --from=builder /code/oauth2/build/libs/oauth2-1.0.0-SNAPSHOT.jar /oauth2-1.0.0-SNAPSHOT.jar
 
 RUN chmod +x /*.sh
 
