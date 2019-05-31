@@ -8,4 +8,5 @@ logging:
     root: ${LOG_LEVEL_ROOT:INFO}
     io.picos: ${LOG_LEVEL_APP:DEBUG}
     com.springframework.security: ${LOG_LEVEL_SECURITY:INFO}
-    com.springframework.security.oauth2: ${LOG_LEVEL_SECURITY:DEBUG}
+  maxFileSize: ${LOG_MAX_FILE_SIZE:10}
+  totalSizeCap: ${LOG_TOTAL_SIZE_CAP:100}

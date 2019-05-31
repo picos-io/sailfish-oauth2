@@ -2,6 +2,8 @@ spring:
   data:
     mongodb:
       uri: ${MONBODB_URI:mongodb://mongodb:27017/sailfish}
+      username: ${MONBODB_USERNAME}
+      password: ${MONBODB_PASSWORD}
     redis:
       repositories.enabled: false
   redis:
