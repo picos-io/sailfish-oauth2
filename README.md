@@ -6,7 +6,7 @@ A Spring Boot OAuth2 Server based on Spring Security & OAuth2.
 
 ## production
 
-Environment - logging 
+Environment - Logging 
 
 env | default value | desc
 ---|---|---
@@ -17,7 +17,7 @@ LOG_LEVEL_SECURITY | INFO | package com.springframework.security
 LOG_MAX_FILE_SIZE | 10 | unit:mb
 LOG_TOTAL_SIZE_CAP | 100 | unit:mb
 
-Environment - application
+Environment - Application
 
 env | default value | desc
 ---|---|---
@@ -43,7 +43,7 @@ JAVA_OPTS |
 
 ## without-credentials
 
-Environment - logging
+Environment - Logging
 
 env | default value | desc
 ---|---|---
@@ -54,7 +54,7 @@ LOG_LEVEL_SECURITY | INFO | package com.springframework.security
 LOG_MAX_FILE_SIZE | 10 | unit:mb
 LOG_TOTAL_SIZE_CAP | 100 | unit:mb
 
-Environment - application
+Environment - Application
 
 env | default value | desc
 ---|---|---
