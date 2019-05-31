@@ -1,4 +1,4 @@
-package io.pics.sailfish.oauth2.test.utils;
+package io.picos.sailfish.oauth2.test.utils;
 
 import org.junit.Assert;
 import org.junit.Test;
