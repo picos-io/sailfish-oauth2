@@ -6,11 +6,14 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Document(collection = "users")
 public class User extends StringIdentifier implements UserDetails {
@@ -36,9 +39,6 @@ public class User extends StringIdentifier implements UserDetails {
     private boolean locked = false;
 
     private boolean enabled = true;
-
-    @Transient
-    private List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
     @DBRef
     private List<AppRole> roles = new ArrayList<>();
@@ -94,10 +94,6 @@ public class User extends StringIdentifier implements UserDetails {
         this.enabled = enabled;
     }
 
-    public void setAuthorities(List<GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
-
     public List<AppRole> getRoles() {
         return roles;
     }
@@ -134,7 +130,10 @@ public class User extends StringIdentifier implements UserDetails {
 
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
-        return authorities;
+        if (roles == null && roles.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return roles.stream().map(item -> new SimpleGrantedAuthority(item.getAuthority())).collect(Collectors.toList());
     }
 
 }
