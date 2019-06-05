@@ -3,7 +3,7 @@ server:
 
 info:
   app:
-    name: ${spring.application.name}
+    name: oauth2
     version: ${OAUTH2_VERSION:unknown}
 
 security:
