@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      username: ${MONBODB_USERNAME}
+      password: ${MONBODB_PASSWORD}

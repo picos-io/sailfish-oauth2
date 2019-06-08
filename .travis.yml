@@ -18,6 +18,9 @@ branches:
 
 jobs:
   include:
+    - stage: build
+      script:
+        - ./gradlew clean build -x test
     - stage: deploy
       script:
         - docker build --no-cache -f oauth2/src/docker/Dockerfile -t picosio/sailfish-oauth2 --rm=true .
@@ -26,5 +29,7 @@ jobs:
         - docker logout
 
 stages:
+  - name: build
+    if: branch = dev
   - name: deploy
     if: branch = master
